@@ -1,9 +1,6 @@
-import 'dart:io';
-import 'dart:math';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import '../files_import/files_import.dart';
 
 class CardPage extends StatefulWidget {
   const CardPage({Key? key}) : super(key: key);
@@ -17,37 +14,36 @@ class _CardPageState extends State<CardPage> {
 
   File picture = File("");
 
-
-
-
   File? imageFile;
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-     
         children: [
           SizedBox(
-                  height: 30,
-                ),
+            height: 30.h,
+          ),
           GestureDetector(
-            onTap: () async {}, 
+            onTap: () async {},
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               height: MediaQuery.of(context).size.height * 0.3,
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
                   color: Colors.grey[300],
-                  image: DecorationImage(image: picture.path != null
-                  ? FileImage(
-                      picture as File,
-                   
-                    )
-                  :  AssetImage("assets/images/1.jpg" , )  as ImageProvider, fit: BoxFit.cover) ,
-                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                      image: picture.path != null
+                          ? FileImage(
+                              picture as File,
+                            )
+                          : const AssetImage(
+                              "assets/images/1.jpg",
+                            ) as ImageProvider,
+                      fit: BoxFit.cover),
+                  borderRadius: BorderRadius.circular(15.r),
                   boxShadow: [
                     // Shadow for top-left corner
                     BoxShadow(
@@ -64,19 +60,31 @@ class _CardPageState extends State<CardPage> {
                       spreadRadius: 1,
                     ),
                   ]),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Image.asset("assets/images/chip.png", height: 150, width: 150,), 
-                      Text(" 9860  1801 0346  1183", style: TextStyle(fontSize: 33, ),), 
-                       Text("12/27", textAlign: TextAlign.center) , 
-                        Text("Sattorov Sardor", textAlign: TextAlign.left)
-                    ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 20.h,
                   ),
+                  Image.asset(
+                    "assets/images/chip.png",
+                    height: 150.h,
+                    width: 150.w,
+                  ),
+                  Text(
+                    " 9860  1801 0346  1183",
+                    style: TextStyle(
+                      fontSize: 33,
+                    ),
+                  ),
+                  const Text("12/27", textAlign: TextAlign.center),
+                  const Text("Sattorov Sardor", textAlign: TextAlign.left)
+                ],
+              ),
             ),
+          ),
+          const SizedBox(
+            height: 30,
           ),
           ElevatedButton(
             onPressed: () async {
@@ -88,24 +96,14 @@ class _CardPageState extends State<CardPage> {
               });
             },
             child: const Text(
-              "Plastikni orqa fonini almashtirish",
+              "Set picture",
               style: TextStyle(
                 fontSize: 20.0,
               ),
             ),
           ),
-        
-
-          
-         
-        
         ],
       ),
     );
   }
-
-
-
-
- 
 }
